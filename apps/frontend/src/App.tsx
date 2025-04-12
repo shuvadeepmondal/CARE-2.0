@@ -41,11 +41,11 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/otp/:userId" element={<OTP />} />
           <Route path="/verify-email/:userId" element={<VerifiedPage />} />
-          <Route path="/feeds" element={isProfileComplete ? <Feed /> : <Navigate to="/profile" />} />
-          <Route path="/contact" element={isProfileComplete ? <Contact /> : <Navigate to="/profile" />} />
-          <Route path="/offer-support" element={isProfileComplete ? <Offer /> : <Navigate to="/profile" />} />
-          <Route path="/marketplace" element={isProfileComplete ? <MarketPlace /> : <Navigate to="/profile" />} />
-          <Route path="/hiring" element= {isProfileComplete ? <Hiring/> : <Navigate to="/profile" /> } />
+          <Route path="/feeds" element={<Feed /> } />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/offer-support" element={<Offer />} />
+          <Route path="/marketplace" element={<MarketPlace />} />
+          <Route path="/hiring" element= {<Hiring/>} />
           <Route path="/services" element={<ServiceP/>} />
           <Route path="/help-request" element={<HelpRequest />} />
           <Route path="/page-not-found" element={<Not_Found />} />

@@ -49,6 +49,15 @@
 
 <img src="https://skillicons.dev/icons?i=mongodb,postgresql&theme=dark" />
 
+## 🔑 Environment Variables
+
+To set up this project locally, you need to create a `.env` file in the root directory. You can use the `.env.sample` file as a reference.
+
+1. Copy the sample `.env` file:
+   ```sh
+   cp .env.sample .env
+
+
 ### Services
 
 <img src="https://skillicons.dev/icons?i=npm,vercel,prisma&theme=dark" />

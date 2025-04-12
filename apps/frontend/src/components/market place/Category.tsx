@@ -33,12 +33,20 @@ const categories = [
       { title: "Worn-out Battery", image: wornOutBattery, price: "₹ 300", condition: "Doesn't Hold Charge", rating: "⭐⭐⭐" },
     ],
   },
-  // Add more categories as needed
 ];
 
 function Category() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOption, setSortOption] = useState('date');
+
+  // 🔍 Real-time Search: Filter categories based on search query
+  const filteredCategories = categories
+    .map(category => ({
+      ...category,
+      items: category.items.filter(item =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      ),
+    }))
+    .filter(category => category.items.length > 0); // Remove empty categories
 
   return (
     <>
@@ -48,10 +56,11 @@ function Category() {
           Market<span className="text-blue-500">Place</span>
         </h1>
         <p className="mx-auto max-w-[700px] text-slate-400 md:text-xl lg:text-base xl:text-xl dark:text-white">
-        Turning Trash into Treasure: Your e-Waste, Our Marketplace!
-            </p>
+          Turning Trash into Treasure: Your e-Waste, Our Marketplace!
+        </p>
       </div>
 
+      {/* Search and Filter UI */}
       <div className="search-filter-bar mb-10 flex space-x-4 p-5 z-10">
         <input
           type="text"
@@ -60,27 +69,17 @@ function Category() {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-bar flex-grow p-2 border border-gray-300 rounded-2xl"
         />
-        <select
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-          className="sort-by p-2 border border-gray-300 rounded-2xl"
-        >
-          <option value="date">Sort by Date</option>
-          <option value="popularity">Sort by Popularity</option>
-          <option value="price">Sort by Price</option>
-        </select>
-        <select className="category-filter p-2 border border-gray-300 rounded-2xl">
-          <option value="all">All Categories</option>
-          <option value="electronics">Electronics</option>
-          <option value="office">Office Equipment</option>
-          <option value="power">Power & Accessories</option>
-        </select>
       </div>
 
+      {/* Display Filtered Categories */}
       <div className="container mx-auto p-6 z-10">
-        {categories.map((category, index) => (
-          <CategorySection key={index} title={category.title} items={category.items} />
-        ))}
+        {filteredCategories.length > 0 ? (
+          filteredCategories.map((category, index) => (
+            <CategorySection key={index} title={category.title} items={category.items} />
+          ))
+        ) : (
+          <p className="text-center text-gray-500">No items found</p>
+        )}
       </div>
     </>
   );
